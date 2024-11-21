@@ -48,6 +48,7 @@ namespace DAL
                         }
                         oPersona.direccion = (string)miLector["Direccion"];
                         oPersona.telefono = (string)miLector["Telefono"];
+                        oPersona.idDepartamento = (int)miLector["IDDepartamento"];
                     }
                 }
                 miLector.Close();
@@ -62,6 +63,52 @@ namespace DAL
             }
 
             return oPersona;
+        }
+
+        /// <summary>
+        /// Devuelve una persona de la base de datos segun su id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Devuelve un departamento vacío si no se encuentra la persona</returns>
+        public static ClsDepartamento buscarDepartamentoPorId(int id)
+        {
+            SqlConnection miConexion = new SqlConnection();
+
+            SqlCommand miComando = new SqlCommand();
+
+            SqlDataReader miLector;
+
+            ClsDepartamento oDepartamento = new ClsDepartamento();
+
+            try
+            {
+                miConexion = ClsConnection.getConexion();
+                miComando.CommandText = "SELECT * FROM departamentos WHERE ID=@id";
+                miComando.Connection = miConexion;
+                miComando.Parameters.AddWithValue("@id", id);
+                miLector = miComando.ExecuteReader();
+
+                if (miLector.HasRows)
+                {
+                    while (miLector.Read())
+                    {
+                        oDepartamento = new ClsDepartamento();
+                        oDepartamento.id = (int)miLector["ID"];
+                        oDepartamento.nombre = (string)miLector["Nombre"];
+                    }
+                }
+                miLector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                miConexion.Close();
+            }
+
+            return oDepartamento;
         }
 
         /// <summary>
@@ -130,7 +177,7 @@ namespace DAL
             {
                 miConexion = ClsConnection.getConexion();
 
-                miComando.CommandText = "UPDATE Personas SET Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, FechaNacimiento=@fechaNacimiento, IDDepartamento=@idDepartamento WHERE ID=@id";
+                miComando.CommandText = "UPDATE Personas SET Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, FechaNacimiento=@fechaNacimiento WHERE ID=@id";
                 miComando.Connection = miConexion;
 
                 // Agregar los parámetros
@@ -140,7 +187,6 @@ namespace DAL
                 miComando.Parameters.AddWithValue("@direccion", persona.direccion);
                 miComando.Parameters.AddWithValue("@fechaNacimiento", persona.fechaNacimiento);
                 miComando.Parameters.AddWithValue("@id", persona.id);
-                miComando.Parameters.AddWithValue("@idDepartamento", persona.idDepartamento);
 
                 numeroFilasAfectadas = miComando.ExecuteNonQuery();
 

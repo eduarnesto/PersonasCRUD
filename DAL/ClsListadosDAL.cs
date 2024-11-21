@@ -49,6 +49,7 @@ namespace DAL
                         }
                         oPersona.direccion = (string)miLector["Direccion"];
                         oPersona.telefono = (string)miLector["Telefono"];
+                        oPersona.idDepartamento = (int)miLector["IDDepartamento"];
                         listadoPersonas.Add(oPersona);
                     }
                 }

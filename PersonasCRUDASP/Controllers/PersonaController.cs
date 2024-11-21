@@ -77,37 +77,52 @@ namespace PersonasCRUDASP.Controllers
         // POST: PersonaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ClsPersona personaNueva)
         {
+            string pagina = "";
             try
             {
-                return RedirectToAction(nameof(Index));
+                ClsManejadoraBL.modificarPersona(personaNueva);
+                pagina = "Index";
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                pagina = "Error";
             }
+            return RedirectToAction(pagina);
         }
 
         // GET: PersonaController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ClsPersona persona = new ClsPersona();
+            try
+            {
+                persona = ClsManejadoraBL.buscarPersonaPorId(id);
+            }
+            catch (Exception ex)
+            {
+                //TODO Pagina de error
+            }
+            return View(persona);
         }
 
         // POST: PersonaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(ClsPersona persona)
         {
+            string pagina = "";
             try
             {
-                return RedirectToAction(nameof(Index));
+                ClsManejadoraBL.eliminarPersona(persona.id);
+                pagina = "Index";
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                pagina = "Error";
             }
+            return RedirectToAction(pagina);
         }
     }
 }
