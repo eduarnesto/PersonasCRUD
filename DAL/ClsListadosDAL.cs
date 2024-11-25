@@ -11,7 +11,7 @@ namespace DAL
     public class ClsListadosDAL
     {
         /// <summary>
-        /// Devuelve un listado de la base de datos de azure
+        /// Devuelve un listado completo de las personas
         /// </summary>
         public static List<ClsPersona> ListadoCompletoPersonasDAL()
         {
@@ -66,6 +66,55 @@ namespace DAL
             }
 
             return listadoPersonas;
+        }
+
+        /// <summary>
+        /// Devuelve un listado completo de los departamentos
+        /// </summary>
+        public static List<ClsDepartamento> ListadoCompletoDepartamentosDAL()
+        {
+
+
+            SqlConnection miConexion = new SqlConnection();
+
+            List<ClsDepartamento> listadoDepartamentos = new List<ClsDepartamento>();
+
+            SqlCommand miComando = new SqlCommand();
+
+            SqlDataReader miLector;
+
+            ClsDepartamento oDepartamento;
+
+            try
+            {
+                miConexion = ClsConnection.getConexion();
+                miComando.CommandText = "SELECT * FROM departamentos";
+                miComando.Connection = miConexion;
+                miLector = miComando.ExecuteReader();
+
+                if (miLector.HasRows)
+                {
+                    while (miLector.Read())
+                    {
+                        oDepartamento = new ClsDepartamento();
+                        oDepartamento.id = (int)miLector["ID"];
+                        oDepartamento.nombre = (string)miLector["Nombre"];
+                        listadoDepartamentos.Add(oDepartamento);
+                    }
+                }
+                miLector.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                miConexion.Close();
+            }
+
+            return listadoDepartamentos;
         }
 
     }

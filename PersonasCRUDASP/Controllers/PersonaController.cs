@@ -2,6 +2,7 @@
 using ENT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PersonasCRUDASP.Models;
 
 namespace PersonasCRUDASP.Controllers
 {
@@ -10,16 +11,16 @@ namespace PersonasCRUDASP.Controllers
         // GET: PersonaController
         public ActionResult Index()
         {
-            List<ClsPersona> list = new List<ClsPersona>();
+            ClsListadoPersonaConNombreDepartamento personas = new ClsListadoPersonaConNombreDepartamento();
             try
             {
-                list = ClsListadosBL.ListadoCompletoPersonasBL();
+
             }
             catch (Exception ex)
             {
                 //TODO Pagina de error
             }
-            return View(list);
+            return View(personas.PersonasConNombreDept);
         }
 
         // GET: PersonaController/Details/5

@@ -11,9 +11,24 @@ namespace BL
 {
     public class ClsManejadoraBL
     {
+        /// <summary>
+        /// Devuelve la persona asignada al id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static ClsPersona buscarPersonaPorId(int id)
         {
             return ClsManejadoraDAL.buscarPersonaPorId(id);
+        }
+
+        /// <summary>
+        /// Devuelve el departamento asignado al id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static ClsDepartamento buscarDepartamentoPorId(int id)
+        {
+            return ClsManejadoraDAL.buscarDepartamentoPorId(id);
         }
 
         /// <summary>
