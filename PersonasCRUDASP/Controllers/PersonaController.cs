@@ -17,7 +17,7 @@ namespace PersonasCRUDASP.Controllers
             }
             catch (Exception ex)
             {
-                //TODO Pagina de errror
+                //TODO Pagina de error
             }
             return View(list);
         }
