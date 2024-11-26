@@ -1,4 +1,5 @@
-﻿namespace ENT
+﻿
+namespace ENT
 {
     public class ClsPersona
     {
@@ -10,7 +11,7 @@
         public string direccion { get; set; }
         public string foto { get; set; }
         public DateTime fechaNacimiento { get; set; }
-        public int idDepartamento { get; set; }
+        public int idDepartamento { get; set; } = -1;
         #endregion
 
 

@@ -1,9 +1,12 @@
 ﻿using BL;
 using ENT;
+using PersonasCRUDMaui.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace PersonasCRUDASP.Models
+namespace PersonasCRUDMaui.ViewModels
 {
-    public class ClsListadoPersonaConNombreDepartamento
+    public class ClsListadoPersonaVM: INotifyPropertyChanged
     {
         #region Atributos
         private List<ClsPersonaConNombreDepartamento> personasConNombreDept;
@@ -17,7 +20,7 @@ namespace PersonasCRUDASP.Models
         #endregion
 
         #region Constructores
-        public ClsListadoPersonaConNombreDepartamento()
+        public ClsListadoPersonaVM()
         {
             List<ClsPersona> personas = ClsListadosBL.ListadoCompletoPersonasBL();
             personasConNombreDept = new List<ClsPersonaConNombreDepartamento>();
@@ -27,6 +30,16 @@ namespace PersonasCRUDASP.Models
                 ClsPersonaConNombreDepartamento personaNombreDept = new ClsPersonaConNombreDepartamento(persona.id);
                 personasConNombreDept.Add(personaNombreDept);
             }
+        }
+        #endregion
+
+        #region Notify
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new
+            PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

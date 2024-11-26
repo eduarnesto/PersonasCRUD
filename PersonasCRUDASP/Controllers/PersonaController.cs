@@ -14,7 +14,7 @@ namespace PersonasCRUDASP.Controllers
             ClsListadoPersonaConNombreDepartamento personas = new ClsListadoPersonaConNombreDepartamento();
             try
             {
-
+                personas = new ClsListadoPersonaConNombreDepartamento();
             }
             catch (Exception ex)
             {
@@ -26,10 +26,10 @@ namespace PersonasCRUDASP.Controllers
         // GET: PersonaController/Details/5
         public ActionResult Details(int id)
         {
-            ClsPersona persona = new ClsPersona();
+            ClsPersonaConNombreDepartamento persona = null;
             try
             {
-                persona = ClsManejadoraBL.buscarPersonaPorId(id);
+                persona = new ClsPersonaConNombreDepartamento(id);
             }
             catch (Exception ex)
             {

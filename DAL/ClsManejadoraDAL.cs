@@ -107,6 +107,50 @@ namespace DAL
         }
 
         /// <summary>
+        /// Devuelve una persona de la base de datos segun su id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Devuelve un departamento vacío si no se encuentra la persona</returns>
+        public static string buscarIdDepartamento(string dept)
+        {
+            SqlConnection miConexion = new SqlConnection();
+
+            SqlCommand miComando = new SqlCommand();
+
+            SqlDataReader miLector;
+
+            string nombre = "";
+
+            try
+            {
+                miConexion = ClsConnection.getConexion();
+                miComando.CommandText = "SELECT id FROM departamentos WHERE Nombre=@nombre";
+                miComando.Connection = miConexion;
+                miComando.Parameters.AddWithValue("@nombre", dept);
+                miLector = miComando.ExecuteReader();
+
+                if (miLector.HasRows)
+                {
+                    while (miLector.Read())
+                    {
+                        nombre = (string)miLector["Nombre"];
+                    }
+                }
+                miLector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                miConexion.Close();
+            }
+
+            return nombre;
+        }
+
+        /// <summary>
         /// Elimina una persona de la base de datos
         /// </summary>
         /// <param name="id"></param>

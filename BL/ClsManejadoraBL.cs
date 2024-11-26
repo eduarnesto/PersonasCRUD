@@ -32,6 +32,16 @@ namespace BL
         }
 
         /// <summary>
+        /// Devuelve el departamento asignado al id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string buscarIdDepartamento(string nombre)
+        {
+            return ClsManejadoraDAL.buscarIdDepartamento(nombre);
+        }
+
+        /// <summary>
         /// Elimina una persona de la base de datos
         /// </summary>
         /// <param name="id"></param>
@@ -52,11 +62,21 @@ namespace BL
         }
 
         /// <summary>
-        /// Modifica una persona
+        /// Agrega una persona
         /// </summary>
         /// <param name="persona"></param>
         /// <returns></returns>
         public static int agregarPersona(ClsPersona persona)
+        {
+            return ClsManejadoraDAL.agregarPersona(persona);
+        }
+
+        /// <summary>
+        /// Agrega una persona
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns></returns>
+        public static int agregarPersona(ClsPersona persona, string nombreDept)
         {
             return ClsManejadoraDAL.agregarPersona(persona);
         }
