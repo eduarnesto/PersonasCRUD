@@ -6,58 +6,29 @@ namespace PersonasCRUDMaui.Models;
 public class ClsPersonaConNombreDepartamento : ClsPersona
 {
     #region Atributos
-    public string nombreDepartamento { get; set; }
-    #endregion
+        private string nombreDept;
+        #endregion
 
+        #region Propiedades
+        public string NombreDept { get { return nombreDept; } }
+        #endregion
 
-    #region Constructores
-    public ClsPersonaConNombreDepartamento(int idPersona)
-    {
-        ClsPersona persona = ClsManejadoraBL.buscarPersonaPorId(idPersona);
-
-        if (persona != null)
+        #region Constructores
+        public ClsPersonaConNombreDepartamento(ClsPersona persona, List<ClsDepartamento> listaDepartamentos)
         {
-            this.id = persona.id;
-            this.nombre = persona.nombre;
-            this.apellidos = persona.apellidos;
-            this.telefono = persona.telefono;
-            this.direccion = persona.direccion;
-            this.foto = persona.foto;
-            this.fechaNacimiento = persona.fechaNacimiento;
-            this.idDepartamento = persona.idDepartamento;
-
-            string dep = ClsManejadoraBL.buscarDepartamentoPorId(idDepartamento).nombre;
-
-            if (dep != null)
+            if (persona != null)
             {
-                this.nombreDepartamento = dep;
+                id = persona.id;
+                nombre = persona.nombre;
+                apellidos = persona.apellidos;
+                telefono = persona.telefono;
+                direccion = persona.direccion;
+                foto = persona.foto;
+                fechaNacimiento = persona.fechaNacimiento;
+                idDepartamento = persona.idDepartamento;
+
+                nombreDept = listaDepartamentos.First(dep => dep.id == persona.idDepartamento).nombre;
             }
         }
-
-    }
-
-    public ClsPersonaConNombreDepartamento(ClsPersona persona, List<ClsDepartamento> departamentos)
-    {
-
-        if (persona != null)
-        {
-            this.id = persona.id;
-            this.nombre = persona.nombre;
-            this.apellidos = persona.apellidos;
-            this.telefono = persona.telefono;
-            this.direccion = persona.direccion;
-            this.foto = persona.foto;
-            this.fechaNacimiento = persona.fechaNacimiento;
-            this.idDepartamento = persona.idDepartamento;
-
-            string dep = departamentos.FirstOrDefault(p => p.id == persona.idDepartamento).nombre;
-
-            if (dep != null)
-            {
-                this.nombreDepartamento = dep;
-            }
-        }
-
-    }
-    #endregion
+        #endregion
 }

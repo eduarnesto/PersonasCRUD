@@ -48,10 +48,6 @@ namespace DAL
                 }
                 miLector.Close();
             }
-            catch (Exception ex)
-            {
-                throw;
-            }
             finally
             {
                 miConexion.Close();
@@ -94,10 +90,6 @@ namespace DAL
                 }
                 miLector.Close();
             }
-            catch (Exception ex)
-            {
-                throw;
-            }
             finally
             {
                 miConexion.Close();
@@ -137,10 +129,6 @@ namespace DAL
                     }
                 }
                 miLector.Close();
-            }
-            catch (Exception ex)
-            {
-                throw;
             }
             finally
             {
@@ -201,22 +189,18 @@ namespace DAL
         /// <returns></returns>
         public static int modificarPersona(ClsPersona persona)
         {
-            int numeroFilasAfectadas = 0;
+            int numeroFilasAfectadas;
 
             SqlConnection miConexion = new SqlConnection();
 
-            List<ClsPersona> listadoPersonas = new List<ClsPersona>();
-
             SqlCommand miComando = new SqlCommand();
-
-            SqlDataReader miLector;
 
             try
 
             {
                 miConexion = ClsConnection.getConexion();
 
-                miComando.CommandText = "UPDATE Personas SET Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, FechaNacimiento=@fechaNacimiento WHERE ID=@id";
+                miComando.CommandText = "UPDATE Personas SET Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, FechaNacimiento=@fechaNacimiento, IDDepartamento=@idDepartamento WHERE ID=@id";
                 miComando.Connection = miConexion;
 
                 // Agregar los parámetros
@@ -226,6 +210,7 @@ namespace DAL
                 miComando.Parameters.AddWithValue("@direccion", persona.direccion);
                 miComando.Parameters.AddWithValue("@fechaNacimiento", persona.fechaNacimiento);
                 miComando.Parameters.AddWithValue("@id", persona.id);
+                miComando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.Int).Value = persona.idDepartamento;
 
                 numeroFilasAfectadas = miComando.ExecuteNonQuery();
 
