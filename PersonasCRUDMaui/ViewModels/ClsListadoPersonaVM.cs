@@ -16,6 +16,7 @@ namespace PersonasCRUDMaui.ViewModels
         private ClsPersonaConNombreDepartamento? personaSeleccionada;
         private ObservableCollection<ClsPersonaConNombreDepartamento> listadoPersonasNombreDept;
         private List<ClsPersona> listadoPersonas;
+        private DelegateCommand detallesCommand;
         private DelegateCommand insertarCommand;
         private DelegateCommand editarCommand;
         private DelegateCommand borrarCommand;
@@ -45,6 +46,10 @@ namespace PersonasCRUDMaui.ViewModels
         public ObservableCollection<ClsPersonaConNombreDepartamento> ListadoPersonasNombreDept
         {
             get { return listadoPersonasNombreDept; }
+        }
+        public DelegateCommand DetallesCommand
+        {
+            get { return detallesCommand; }
         }
         public DelegateCommand InsertarCommand
         {
@@ -76,6 +81,7 @@ namespace PersonasCRUDMaui.ViewModels
         public ClsListadoPersonaVM()
         {
             cargarListado();
+            detallesCommand = new DelegateCommand(detallesCommandExecuted);
             insertarCommand = new DelegateCommand(insertarCommandExecuted);
             editarCommand = new DelegateCommand(editarCommandExecuted, editarCommandCanExecute);
             borrarCommand = new DelegateCommand(borrarCommandExecuted, borrarCommandCanExecute);
@@ -126,6 +132,18 @@ namespace PersonasCRUDMaui.ViewModels
         #endregion
 
         #region Comandos
+        /// <summary>
+        /// Función que va a la pantalla de detalles de la persona
+        /// <br></br>
+        /// Pre: Ninguna
+        /// <br></br>
+        /// Post: Ninguna
+        /// </summary>
+        public async void detallesCommandExecuted()
+        {
+            await Shell.Current.GoToAsync("///DetallesPersona");
+        }
+
         /// <summary>
         /// Función que va a la pantalla insertar
         /// <br></br>

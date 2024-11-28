@@ -67,6 +67,18 @@
         </ScrollView>
 
         <!-- Botones superpuestos, se muestran si ShowContent es true -->
+        <Button Text="D"
+                Command="{Binding DetallesCommand }"
+                BackgroundColor="Yellow"
+                TextColor="White"
+                FontSize="Medium"
+                CornerRadius="25"
+                WidthRequest="50"
+                HeightRequest="50"
+                AbsoluteLayout.LayoutBounds="0.99, 0.69, 50, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding ShowContent}"/>
+
         <Button Text="✏️"
             Command="{Binding EditarCommand }"
             BackgroundColor="Purple"
