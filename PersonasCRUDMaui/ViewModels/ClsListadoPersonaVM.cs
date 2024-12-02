@@ -141,7 +141,16 @@ namespace PersonasCRUDMaui.ViewModels
         /// </summary>
         public async void detallesCommandExecuted()
         {
-            await Shell.Current.GoToAsync("///DetallesPersona");
+            if (personaSeleccionada != null)
+            {
+                ClsPersona persona = ClsManejadoraBL.buscarPersonaPorId(personaSeleccionada.id);
+                var queryParams = new Dictionary<string, object>
+                {
+                    { "persona", persona}
+                };
+
+                await Shell.Current.GoToAsync("///DetallesPersona", queryParams);
+            }
         }
 
         /// <summary>
@@ -153,7 +162,7 @@ namespace PersonasCRUDMaui.ViewModels
         /// </summary>
         public async void insertarCommandExecuted()
         {
-            await Shell.Current.GoToAsync("///insertarPersona");
+            await Shell.Current.GoToAsync("///AgregarPersona");
         }
 
         /// <summary>

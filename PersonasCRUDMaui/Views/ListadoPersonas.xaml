@@ -69,7 +69,7 @@
         <!-- Botones superpuestos, se muestran si ShowContent es true -->
         <Button Text="D"
                 Command="{Binding DetallesCommand }"
-                BackgroundColor="Yellow"
+                BackgroundColor="Blue"
                 TextColor="White"
                 FontSize="Medium"
                 CornerRadius="25"

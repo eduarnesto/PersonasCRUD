@@ -18,17 +18,20 @@
 
         <ScrollView IsVisible="{Binding ShowContent}">
             <VerticalStackLayout Padding="20" Spacing="15">
+                <Label Text="Foto" FontSize="18"></Label>
+                <Image Source="{Binding Persona.foto}" MaximumHeightRequest="200" MaximumWidthRequest="200"></Image>
+
                 <!-- Campo Nombre -->
-                <Label Text="Nombre" FontSize="18" />
+                <Label Text="Nombre" FontSize="18"/>
                 <Label Text="{Binding Persona.nombre}"></Label>
 
                 <!-- Campo Apellidos -->
-                <Label Text="Apellidos" FontSize="18" />
+                <Label Text="Apellidos" FontSize="18"/>
                 <Label Text="{Binding Persona.apellidos}"/>
 
                 <!-- Campo IdDepartamento -->
-                <Label Text="Departamento" FontSize="18" />
-                <Label Text="{Binding NombreDept}" FontSize="18" />
+                <Label Text="Departamento" FontSize="18"/>
+                <Label Text="{Binding NombreDept}"/>
 
                 <!-- Botón Volver listado -->
                 <Button 

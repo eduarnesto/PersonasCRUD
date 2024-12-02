@@ -58,51 +58,13 @@ namespace PersonasCRUDMaui.ViewModels
         #endregion
 
         #region Constructores
-        public ClsEditarPersonaVM()
+        public ClsDetallesPersonaVM()
         {
             volverCommand = new DelegateCommand(volverCommandExecuted);
-
-            try
-            {
-                departamentos = ClsListadosBL.ListadoCompletoDepartamentosBL();
-
-            }
-            catch (Exception ex)
-            {
-
-                error = "Ha ocurrido un error";
-                showError = true;
-                NotifyPropertyChanged("Error");
-                NotifyPropertyChanged("ShowError");
-            }
         }
         #endregion
 
         #region Commands
-        /// <summary>
-        /// Función que actualiza una persona en la base de datos
-        /// <br></br>
-        /// Pre: Persona no nula
-        /// <br></br>
-        /// Post: Ninguna
-        /// </summary>
-        public async void guardarCommandExecuted()
-        {
-            if (persona != null)
-            {
-                persona.idDepartamento = departamentoSeleccionado.id;
-                int filasAfectadas = ClsManejadoraBL.modificarPersona(persona);
-
-                if (filasAfectadas > 0)
-                {
-                    CancellationTokenSource token = new CancellationTokenSource();
-                    var toast = Toast.Make("Persona editada correctamente", ToastDuration.Short, 14);
-                    await toast.Show(token.Token);
-                    await Shell.Current.GoToAsync("///ListadoPersonas");
-                }
-            }
-        }
-
         /// <summary>
         /// Función que vuelve al listado
         /// <br></br>
