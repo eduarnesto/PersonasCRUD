@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="using:PersonasCRUDMaui.ViewModels"
+             x:Class="PersonasCRUDMaui.Views.DetallesPersona"
+             Title="DetallesPersona">
+    <ContentPage.BindingContext>
+        <viewModels:ClsEditarPersonaVM></viewModels:ClsEditarPersonaVM>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <VerticalStackLayout IsVisible="{Binding ShowError}">
+            <Label Text="{Binding Error}"></Label>
+            <Button
+                Text="Volver al listado"
+                Command="{Binding VolverCommand}"></Button>
+        </VerticalStackLayout>
+
+        <ScrollView IsVisible="{Binding ShowContent}">
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <Label Text="Foto" FontSize="18"></Label>
+                <Image Source="{Binding Persona.foto}" MaximumHeightRequest="200" MaximumWidthRequest="200"></Image>
+
+                <!-- Campo Nombre -->
+                <Label Text="Nombre" FontSize="18"/>
+                <Label Text="{Binding Persona.nombre}"></Label>
+
+                <!-- Campo Apellidos -->
+                <Label Text="Apellidos" FontSize="18"/>
+                <Label Text="{Binding Persona.apellidos}"/>
+
+                <!-- Campo IdDepartamento -->
+                <Label Text="Departamento" FontSize="18"/>
+                <Label Text="{Binding NombreDept}"/>
+
+                <!-- Botón Volver listado -->
+                <Button 
+                    Text="Volver al listado"
+                    Command="{Binding VolverCommand}"
+                    BackgroundColor="Purple"
+                    TextColor="White" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </VerticalStackLayout>
+</ContentPage>

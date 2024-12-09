@@ -146,17 +146,11 @@ namespace DAL
         public static int eliminarPersona(int id)
         {
 
-            int numeroFilasAfectadas = 0;
+            int numeroFilasAfectadas;
 
             SqlConnection miConexion = new SqlConnection();
 
-            List<ClsPersona> listadoPersonas = new List<ClsPersona>();
-
             SqlCommand miComando = new SqlCommand();
-
-            SqlDataReader miLector;
-
-            ClsPersona oPersona;
 
             try
 
@@ -232,15 +226,11 @@ namespace DAL
         /// <returns></returns>
         public static int agregarPersona(ClsPersona persona)
         {
-            int numeroFilasAfectadas = 0;
+            int numeroFilasAfectadas;
 
             SqlConnection miConexion = new SqlConnection();
 
-            List<ClsPersona> listadoPersonas = new List<ClsPersona>();
-
             SqlCommand miComando = new SqlCommand();
-
-            SqlDataReader miLector;
 
             try
 

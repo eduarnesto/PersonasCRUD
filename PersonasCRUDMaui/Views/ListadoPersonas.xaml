@@ -63,6 +63,22 @@
             </VerticalStackLayout>
         </ScrollView>
 
+<<<<<<< HEAD
+=======
+        <!-- Botones superpuestos, se muestran si ShowContent es true -->
+        <Button Text="D"
+                Command="{Binding DetallesCommand }"
+                BackgroundColor="Blue"
+                TextColor="White"
+                FontSize="Medium"
+                CornerRadius="25"
+                WidthRequest="50"
+                HeightRequest="50"
+                AbsoluteLayout.LayoutBounds="0.99, 0.69, 50, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding ShowContent}"/>
+
+>>>>>>> d3280466cf05629e060210e3e5fcb543f3b4d481
         <Button Text="✏️"
                 Command="{Binding EditarCommand }"
                 BackgroundColor="Purple"

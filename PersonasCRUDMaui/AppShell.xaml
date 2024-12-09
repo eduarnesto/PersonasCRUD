@@ -12,6 +12,10 @@
         ContentTemplate="{DataTemplate views:ListadoPersonas}"
         Route="ListadoPersonas" />
     <ShellContent
+        Title="Detalles"
+        ContentTemplate="{DataTemplate views:DetallesPersona}"
+        Route="DetallesPersona" />
+    <ShellContent
         Title="Editar"
         ContentTemplate="{DataTemplate views:EditarPersona}"
         Route="EditarPersona" />
