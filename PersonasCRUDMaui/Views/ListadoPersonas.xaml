@@ -9,10 +9,8 @@
         <viewModels:ClsListadoPersonaVM/>
     </ContentPage.BindingContext>
 
-    <!-- Contenedor principal -->
     <AbsoluteLayout>
 
-        <!-- Mensaje de error, se muestra si ShowError es true -->
         <VerticalStackLayout IsVisible="{Binding ShowError}"
                          HorizontalOptions="Center" 
                          VerticalOptions="CenterAndExpand" 
@@ -25,7 +23,6 @@
                FontSize="Large" />
         </VerticalStackLayout>
 
-        <!-- Contenido principal (ListView y botones), se muestra si ShowContent es true -->
         <ScrollView 
         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
         AbsoluteLayout.LayoutFlags="All"
@@ -66,18 +63,17 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Botones superpuestos, se muestran si ShowContent es true -->
         <Button Text="✏️"
-            Command="{Binding EditarCommand }"
-            BackgroundColor="Purple"
-            TextColor="White"
-            FontSize="Medium"
-            CornerRadius="25"
-            WidthRequest="50"
-            HeightRequest="50"
-            AbsoluteLayout.LayoutBounds="0.99, 0.89, 50, 50"
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            IsVisible="{Binding ShowContent}"/>
+                Command="{Binding EditarCommand }"
+                BackgroundColor="Purple"
+                TextColor="White"
+                FontSize="Medium"
+                CornerRadius="25"
+                WidthRequest="50"
+                HeightRequest="50"
+                AbsoluteLayout.LayoutBounds="0.99, 0.89, 50, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding ShowContent}"/>
 
         <Button Text="+" 
             BackgroundColor="Green"
